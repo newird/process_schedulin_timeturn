@@ -15,7 +15,7 @@ public class TimeTurn {
     Queue<Process> readyList = new LinkedList<>();
     Queue<Process> blockList = new LinkedList<>();
     Queue<Process> endList = new LinkedList<>();
-    int product = 0;
+    int product = 0;int pnum = 0;
     ProcrssRecord pr = new ProcrssRecord();
     ProcessManager pm = new ProcessManager();
 
@@ -29,6 +29,7 @@ public class TimeTurn {
 
     public void add(Process p) {
         createList.add(p);
+        pnum ++;
 //        pm.addProcess("1",1,"a",2);
         pm.addProcess(p.getName(), p.arriveTime, "ready", (p.needTime - p.ranTime),0);
     }
@@ -54,7 +55,7 @@ public class TimeTurn {
 //            System.out.println(p.needTime);
             time++;
             pm.updateTime(time);
-            pm.updateLeftTime(p.name, (p.needTime - p.ranTime - 1));
+            pm.updateLeftTime(p.name, (p.needTime - p.ranTime - 1),pnum);
             if (!createList.isEmpty()) {
                 ready();
             }
@@ -78,11 +79,11 @@ public class TimeTurn {
             pm.updateReady(readyList);
 //            System.out.println(time + "秒 " + p.name + "就绪，时间片到");
             pr.updateView(time + "秒", p.name, "就绪，时间片到");
-            pm.updateState(p.name,"ready");
+            pm.updateState(p.name,"ready",pnum);
         } else {
 //            System.out.println(time + "秒 " + p.name + "结束,运行完成");
             pr.updateView(time + "秒", p.name, "结束,运行完成");
-            pm.updateState(p.name,"finished");
+            pm.updateState(p.name,"finished",pnum);
         }
 
     }
@@ -101,7 +102,7 @@ public class TimeTurn {
                 Process p = readyList.poll();
 //                System.out.println(time + "秒 " + p.name + "执行，进程调度");
                 pr.updateView(time + "秒", p.name, "执行，进程调度");
-                pm.updateState(p.name,"run");
+                pm.updateState(p.name,"run",pnum);
                 p.run();
                 while (product > 0 && !blockList.isEmpty()) {
                     Process q = blockList.poll();

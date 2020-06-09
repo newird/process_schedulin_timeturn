@@ -43,7 +43,7 @@ public class Producer extends Process {
 
     public void run() {
         if(ranTime == 0){
-            timeTurn.pm.setStartTime(name,timeTurn.getTime());
+            timeTurn.pm.setStartTime(name,timeTurn.getTime(),timeTurn.pnum);
         }
         timeTurn.run(this);
         if (needTime == ranTime) {

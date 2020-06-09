@@ -49,12 +49,12 @@ public class Consumer extends Process {
 //            System.out.println(timeTurn.getTime()+"秒 "+ name+ "阻塞，产品不足");
 //            System.out.println(timeTurn.product)
             timeTurn.pr.updateView(timeTurn.getTime()+"秒", name ,"阻塞，产品不足");
-            timeTurn.pm.updateState(name,"block");
+            timeTurn.pm.updateState(name,"block",timeTurn.pnum);
             timeTurn.block(this);
 
         } else {
             if(ranTime == 0){
-                timeTurn.pm.setStartTime(name,timeTurn.getTime());
+                timeTurn.pm.setStartTime(name,timeTurn.getTime(),timeTurn.pnum);
                 timeTurn.product--;
                 timeTurn.pm.updateProduct(timeTurn.product);
             }

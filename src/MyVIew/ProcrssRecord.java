@@ -33,7 +33,9 @@ public class ProcrssRecord{
 
 
     public static void main(String[] args) {
-        new ProcrssRecord().createView();
+        ProcrssRecord p = new ProcrssRecord();
+        p.createView();
+
     }
 
 }

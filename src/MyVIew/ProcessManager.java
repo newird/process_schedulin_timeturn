@@ -46,7 +46,7 @@ public class ProcessManager {
         left.add(needTime);
         left.add(run);
 
-        String[] title = {"进程名", "到达时间", "进程状态", "剩余时间","开始时间"};
+        String[] title = {"进程名", "到达时间", "进程状态", "剩余时间", "开始时间"};
         DefaultTableModel stateModel = new DefaultTableModel(content, title);
         procesState = new JTable(stateModel);
         JScrollPane scroll = new JScrollPane(procesState);
@@ -80,33 +80,37 @@ public class ProcessManager {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
-    public void addProcess(String name ,int arriveTime,String state,int leftTime,int startTime){
-        procesState.setValueAt(name,i,0);
-        procesState.setValueAt(arriveTime,i,1);
-        procesState.setValueAt(state,i,2);
-        procesState.setValueAt(leftTime,i,3);
-        procesState.setValueAt(startTime,i,4);
+
+    public void addProcess(String name, int arriveTime, String state, int leftTime, int startTime) {
+        procesState.setValueAt(name, i, 0);
+        procesState.setValueAt(arriveTime, i, 1);
+        procesState.setValueAt(state, i, 2);
+        procesState.setValueAt(leftTime, i, 3);
+        procesState.setValueAt(startTime, i, 4);
         i++;
     }
-    public void updateLeftTime(String name,int left){
-        for(int i = 0 ;i< 4;i++){
-            if(procesState.getValueAt(i,0).equals(name)){
-                procesState.setValueAt(left,i,3);
+
+    public void updateLeftTime(String name, int left, int num) {
+        for (int i = 0; i < num; i++) {
+            if (procesState.getValueAt(i, 0).equals(name)) {
+                procesState.setValueAt(left, i, 3);
             }
         }
     }
-    public void updateState(String name,String state){
-        for(int i =0 ;i< 4;i++){
-            if(procesState.getValueAt(i,0).equals(name)){
-                procesState.setValueAt(state,i,2);
+
+    public void updateState(String name, String state, int num) {
+        for (int i = 0; i < num; i++) {
+            if (procesState.getValueAt(i, 0).equals(name)) {
+                procesState.setValueAt(state, i, 2);
             }
 //            System.out.println(procesState.getValueAt(i,0));
         }
     }
-    public void setStartTime(String name,int time){
-        for(int i =0 ;i< 4;i++){
-            if(procesState.getValueAt(i,0).equals(name)){
-                procesState.setValueAt(time,i,4);
+
+    public void setStartTime(String name, int time,int num ) {
+        for (int i = 0; i < num; i++) {
+            if (procesState.getValueAt(i, 0).equals(name)) {
+                procesState.setValueAt(time, i, 4);
             }
         }
     }
@@ -148,5 +152,6 @@ public class ProcessManager {
     public static void main(String[] args) {
         ProcessManager pm = new ProcessManager();
         pm.creatView();
+        System.out.println(pm.procesState.getColumnCount());
     }
 }
