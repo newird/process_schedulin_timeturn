@@ -1,9 +1,10 @@
-　　这是一个进程的时间片轮转调度算法，时间片为三秒。同时又存在生产者和消费者的共享互斥。
+# process_schedulin_timeturn
+基于时间片的进程调度，同时有生产者消费者问题
 
 
 
 运行截图
 
-![image-20200609172442186](E:\桌面\os_homework\readme.assets\image-20200609172442186.png)
+![image-20200609174016494](E:\桌面\os_homework\README.assets\image-20200609174016494.png)
 
-![image-20200609172455722](E:\桌面\os_homework\readme.assets\image-20200609172455722.png)
+![image-20200609174058758](E:\桌面\os_homework\README.assets\image-20200609174058758.png)
